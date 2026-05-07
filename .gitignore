@@ -134,3 +134,12 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+.angular/cache/
+.angular/
+node_modules/
+dist/
+.env
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
