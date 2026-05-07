@@ -1,5 +1,8 @@
 # Contact Management Frontend (Angular Assessment)
 
+## Live URL (ON github)
+- sufyanhisok.github.io/Aegasis-Assessment/
+
 ## This project is built with:
 
 - Angular CLI `21.2.10`
