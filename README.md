@@ -1,7 +1,6 @@
 # Contact Management Frontend (Angular Assessment)
 
-## 1) Tech Versions You Need
-This project is built with:
+## This project is built with:
 
 - Angular CLI `21.2.10`
 - Angular `21.2.0`
@@ -9,7 +8,7 @@ This project is built with:
 - npm `10+`
 
 
-## 2) to Run This Project
+## to Run This Project
 From the project root, run:
 
 ```bash
@@ -28,35 +27,11 @@ Then start the app:
 npm start
 ```
 
-App will run on Angular dev server (default `http://localhost:4200`).
 
-## 3) Test Command
-```bash
-npm test
-```
 
-## 4) What This Assessment Covers
-- Login flow with mock authentication
-- Protected contact workspace route
-- Contact list + contact details split layout
-- Search and contact selection behavior
-- API integration using MockAPI
-- Clean, component-scoped SCSS styling
 
-## 5) Project Structure (Guide)
-```text
-src/app
-  core/
-    auth/           # auth service + guards
-    interceptors/   # auth + error interceptors
-  shared/
-    components/     # reusable UI components
-  features/
-    auth/login/     # login feature
-    contacts/       # contacts domain (models/services/pages/components)
-```
 
-## 6) Key Implementation Decisions
+## Implementations
 
 ### Angular Patterns Used
 - Standalone components
@@ -65,7 +40,7 @@ src/app
 
 ### Styling Approach
 - Custom SCSS per component (not UI-library driven)
-- BEM-style class naming for readability and maintainability
+- BEM-style structure for class naming for readability and maintainability
 - Global tokens in `styles.scss` for consistent colors/spacing/typography
 
 ### Authentication + Guards
@@ -75,13 +50,15 @@ src/app
 - On login, a JWT-like mock token is stored in `localStorage`
 - `authGuard` protects `/contacts`
 - `authRedirectGuard` prevents logged-in users from going back to `/login`
+-the reason i created this login page (which was not included in the assessment becuase i wanted to implement/show the reviewer things related to authGuard and routes )
+
 
 ### Interceptors
 - `auth.interceptor.ts`
   - Attaches `Authorization: Bearer <token>` to API requests
   - If token is missing on API calls, user is redirected to `/login`
 - `error.interceptor.ts`
-  - Centralized HTTP error normalization (clean user-facing errors)
+  - Centralized HTTP error normalization (clean user-facing errors) (for a structured large app)
 
 ### Shared Components
 - Reusable components used across features:
