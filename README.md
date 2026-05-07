@@ -68,7 +68,7 @@ npm start
   - `app-button`
   - `app-input`
 
-## 7) Libraries Used
+##  Libraries Used
 - `@angular/*` (core/router/forms/http)
 - `rxjs`
 - `typescript`
@@ -76,15 +76,9 @@ npm start
 - `bootstrap-icons` (social icons)
 - Google Material Icons (via CDN)
 
-## 8) API Configuration
-Environment file:
 
-- `src/environments/environment.ts`
 
-Current base URL:
-
-- `https://69fc3aacfce564e259178fc1.mockapi.io`
-
-## 9) Notes
-- Auth is intentionally simplified for assessment scope.
+## Notes
+- added login page (which was not in scope) for authguard and routes behavior.
+- adjusted some ui like alignment of contact header so the ui might look a 2-5% different then the provided figma design 
 - Focus is on clean architecture, maintainable UI code, and practical Angular patterns.
