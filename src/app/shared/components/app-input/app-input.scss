@@ -1,0 +1,23 @@
+.app-input {
+  align-items: center;
+  background: #f7f7fb;
+  border: 1px solid #ececf3;
+  border-radius: 12px;
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.55rem 0.8rem;
+
+  &__icon {
+    color: #8d8da5;
+    font-size: 0.95rem;
+  }
+
+  input {
+    background: transparent;
+    border: 0;
+    color: #35354d;
+    font-size: 0.9rem;
+    outline: 0;
+    width: 100%;
+  }
+}

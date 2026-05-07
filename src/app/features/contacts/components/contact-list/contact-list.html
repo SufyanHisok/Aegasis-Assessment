@@ -1,0 +1,98 @@
+<div class="contacts-list">
+  <div class="contacts-list__header">
+    <div class="contacts-list__header-left">
+      <button class="contacts-list__menu-button" type="button" aria-label="Menu">
+        <span class="material-icons-outlined">menu</span>
+      </button>
+      <h1 class="contacts-list__title">Contacts</h1>
+    </div>
+    <div class="contacts-list__header-right">
+      <button class="contacts-list__nav-button" type="button" aria-label="Previous">
+        <span class="material-icons-outlined">chevron_left</span>
+      </button>
+      <button class="contacts-list__nav-button" type="button" aria-label="Next">
+        <span class="material-icons-outlined">chevron_right</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="contacts-list__divider"></div>
+  <div class="contacts-list__search">
+    <label class="contacts-list__search-label" for="contact-search">Search for a contact</label>
+    <div class="contacts-list__search-field">
+      <input
+        id="contact-search"
+        class="contacts-list__search-input"
+        type="text"
+        placeholder="Name or phone number..."
+        [value]="searchText"
+        (input)="onSearch($any($event.target).value)"
+        autocomplete="off"
+      />
+      <button type="button" class="contacts-list__search-button" aria-label="Search">
+        <span class="material-icons-outlined">search</span>
+      </button>
+    </div>
+  </div>
+
+  @if (!isLoading && contacts.length === 0) {
+    <div class="contacts-list__empty-state">
+      <app-empty-state title="No contacts found" message="Try a different search keyword." />
+    </div>
+  } @else {
+    <ul class="contacts-list__items" role="listbox" aria-label="Contacts">
+      @for (contact of contacts; track trackByContactId($index, contact)) {
+        <li
+          class="contacts-list__item"
+          [class.contacts-list__item--selected]="selectedContactId === contact.id"
+          role="option"
+          tabindex="0"
+          [attr.aria-selected]="selectedContactId === contact.id"
+          (click)="onSelectContact(contact)"
+          (keydown.enter)="onSelectContact(contact)"
+          (keydown.space)="$event.preventDefault(); onSelectContact(contact)"
+        >
+          <div class="contacts-list__avatar-wrap">
+            <app-avatar
+              [src]="contact.avatarUrl || ''"
+              [alt]="contact.firstName + ' ' + contact.lastName"
+              [size]="36"
+              shape="circle"
+            />
+            @if (contact.status === 'online' || contact.status === 'away') {
+              <span
+                class="contacts-list__status-badge"
+                [class.contacts-list__status-badge--online]="contact.status === 'online'"
+                [class.contacts-list__status-badge--away]="contact.status === 'away'"
+              ></span>
+            }
+          </div>
+
+          <div class="contacts-list__person-meta">
+            <span class="contacts-list__person-name">{{ contact.firstName }} {{ contact.lastName }}</span>
+            <span class="contacts-list__person-role">{{ contact.jobTitle }}</span>
+          </div>
+
+         
+          <div class="contacts-list__item-actions" (click)="$event.stopPropagation()">
+            <button type="button" class="contacts-list__action-button" aria-label="Message">
+              <span class="material-icons-outlined">forum</span>
+            </button>
+            <button type="button" class="contacts-list__action-button" aria-label="Call">
+              <span class="material-icons-outlined">call</span>
+            </button>
+            <button type="button" class="contacts-list__action-button" aria-label="More options">
+              <span class="material-icons-outlined">more_horiz</span>
+            </button>
+          </div>
+        </li>
+      }
+    </ul>
+  }
+
+  <button class="contacts-list__logout-button" type="button" (click)="logout.emit()">
+    <span class="material-icons-outlined">logout</span>
+    Logout
+  </button>
+
+</div>

@@ -1,0 +1,34 @@
+@if (listError()) {
+  <div class="contacts-page__error">
+    <app-empty-state title="Failed to load contacts" [message]="listError()" />
+  </div>
+} @else {
+  <div class="contacts-page__layout">
+    <aside class="contacts-page__sidebar">
+      @if (loading()) {
+        <div class="contacts-page__loader"><app-loader /></div>
+      } @else {
+        <app-contact-list
+          [contacts]="(contacts$ | async) ?? []"
+          [searchText]="searchText()"
+          [selectedContactId]="selectedContact()?.id ?? null"
+          [isLoading]="loading()"
+          (search)="onSearch($event)"
+          (selectContact)="onSelectContact($event)"
+          (logout)="onLogout()"
+        />
+      }
+    </aside>
+    <section class="contacts-page__details">
+      @if (detailsLoading()) {
+        <div class="contacts-page__loader"><app-loader /></div>
+      } @else {
+        <app-contact-details
+          [details]="details()"
+          [errorMessage]="detailsError()"
+        />
+      }
+    </section>
+
+  </div>
+}

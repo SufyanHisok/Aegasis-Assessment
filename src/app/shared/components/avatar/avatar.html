@@ -1,0 +1,20 @@
+@if (src) {
+  <img
+    class="avatar"
+    [class.circle]="shape === 'circle'"
+    [class.rounded]="shape === 'rounded'"
+    [src]="src"
+    [alt]="alt"
+    [style.width.px]="size"
+    [style.height.px]="size"
+  />
+} @else {
+  <span
+    class="avatar avatar--placeholder"
+    [class.circle]="shape === 'circle'"
+    [class.rounded]="shape === 'rounded'"
+    [style.width.px]="size"
+    [style.height.px]="size"
+    [style.font-size.px]="size * 0.36"
+  >{{ initials }}</span>
+}

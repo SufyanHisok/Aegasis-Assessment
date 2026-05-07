@@ -1,0 +1,128 @@
+@if (errorMessage) {
+  <div class="contact-details__empty-state">
+    <app-empty-state title="Unable to load details" [message]="errorMessage" />
+  </div>
+} @else if (!details) {
+  <div class="contact-details__empty-state">
+    <app-empty-state
+      title="Select a contact"
+      message="Pick any contact from the list to see their profile."
+    />
+  </div>
+} @else {
+  <div class="contact-details">
+    <div class="contact-details__header">
+
+      <app-avatar
+        [src]="details.contact.avatarUrl || ''"
+        [alt]="details.contact.firstName + ' ' + details.contact.lastName"
+        [size]="90"
+        shape="rounded"
+      />
+
+      <div class="contact-details__profile-column">
+        <h2 class="contact-details__name">{{ details.contact.firstName }} {{ details.contact.lastName }}</h2>
+        <p class="contact-details__role">{{ details.contact.jobTitle }}</p>
+        <div class="contact-details__actions">
+          <button type="button" class="contact-details__message-button">
+            <span class="material-icons-outlined">forum</span>
+            Message
+          </button>
+
+          <button type="button" class="contact-details__icon-button" aria-label="Call">
+            <span class="material-icons-outlined">call</span>
+          </button>
+
+          <button type="button" class="contact-details__icon-button" aria-label="Schedule">
+            <span class="material-icons-outlined">open_in_new</span>
+          </button>
+
+          <button type="button" class="contact-details__icon-button" aria-label="More options">
+            <span class="material-icons-outlined">more_horiz</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+    <div class="contact-details__rows">
+
+      @if (details.contact.bio) {
+        <div class="contact-details__row">
+          <span class="contact-details__label">Bio</span>
+          <div class="contact-details__value">
+            <p>{{ details.contact.bio }}</p>
+          </div>
+        </div>
+      }
+
+      <div class="contact-details__row">
+        <span class="contact-details__label">Email</span>
+        <div class="contact-details__value">
+          @if (details.emailAddresses.length === 0) {
+            <p class="contact-details__value-empty">—</p>
+          } @else {
+            @for (email of details.emailAddresses; track email.id) {
+              <div class="contact-details__value-line">
+                <span>{{ email.email }}</span>
+                @if (email.isPrimary) {
+                  <span class="contact-details__primary-badge">Primary</span>
+                }
+              </div>
+            }
+          }
+        </div>
+      </div>
+
+      @if (details.contact.phone) {
+        <div class="contact-details__row">
+          <span class="contact-details__label">Dial</span>
+          <div class="contact-details__value">
+            <p>{{ details.contact.phone }}</p>
+          </div>
+        </div>
+      }
+
+      @if (details.contact.meetingUrl) {
+        <div class="contact-details__row">
+          <span class="contact-details__label">Meeting</span>
+          <div class="contact-details__value">
+            <a [href]="details.contact.meetingUrl" target="_blank" rel="noopener" class="contact-details__meeting-url">
+              {{ details.contact.meetingUrl }}
+            </a>
+          </div>
+        </div>
+      }
+
+      @if (details.contact.phone || details.contact.mobile) {
+        <div class="contact-details__row">
+          <span class="contact-details__label">Phone</span>
+          <div class="contact-details__value">
+            @if (details.contact.phone) {
+              <div class="contact-details__value-line">
+                <span>{{ details.contact.phone }}</span>
+                <span class="contact-details__primary-badge">Primary</span>
+              </div>
+            }
+            @if (details.contact.mobile) {
+              <div class="contact-details__value-line">
+                <span>{{ details.contact.mobile }}</span>
+              </div>
+            }
+          </div>
+        </div>
+      }
+
+      <div class="contact-details__row">
+        <span class="contact-details__label">Social</span>
+        <div class="contact-details__value contact-details__value--social">
+          <a href="#" class="contact-details__social-icon" aria-label="Facebook"  (click)="$event.preventDefault()"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="contact-details__social-icon" aria-label="Pinterest" (click)="$event.preventDefault()"><i class="bi bi-pinterest"></i></a>
+          <a href="#" class="contact-details__social-icon" aria-label="Twitter"   (click)="$event.preventDefault()"><i class="bi bi-twitter"></i></a>
+          <a href="#" class="contact-details__social-icon" aria-label="LinkedIn"  (click)="$event.preventDefault()"><i class="bi bi-linkedin"></i></a>
+          <a href="#" class="contact-details__social-icon" aria-label="Google"    (click)="$event.preventDefault()"><i class="bi bi-google"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+}

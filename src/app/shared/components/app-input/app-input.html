@@ -1,0 +1,10 @@
+<label class="app-input">
+  <span class="app-input__icon">⌕</span>
+  <input
+    type="text"
+    [placeholder]="placeholder"
+    [ngModel]="value"
+    (ngModelChange)="valueChange.emit($event)"
+    aria-label="Search contacts"
+  />
+</label>

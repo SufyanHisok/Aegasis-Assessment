@@ -1,0 +1,23 @@
+.avatar {
+  display: block;
+  flex-shrink: 0;
+  object-fit: cover;
+
+  &.circle {
+    border-radius: 10px;
+  }
+
+  &.rounded {
+    border-radius: 10px;
+  }
+}
+
+.avatar--placeholder {
+  align-items: center;
+  background: #e6e4f5;
+  color: #6b59cc;
+  display: flex;
+  font-weight: 700;
+  justify-content: center;
+  letter-spacing: 0.5px;
+}
