@@ -72,10 +72,6 @@ npm start
   - `app-input`
 
 ##  Libraries Used
-- `@angular/*` (core/router/forms/http)
-- `rxjs`
-- `typescript`
-- `vitest` (unit testing)
 - `bootstrap-icons` (social icons)
 - Google Material Icons (via CDN)
 
